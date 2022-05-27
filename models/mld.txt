@@ -1,0 +1,168 @@
+
+********************************************************************
+
+MLD
+Heritage
+-SingleTable(defaut) : Toutes les classes qui participent dans l'heritage seront dans une seule Table
+personne(id,nom_complet,role,login,password,grade,matricule,adresse)
+
+-Joined :Cree autant de Table que de classe mais la cle de la classe de la classe mere migre 
+comme cle etrangere au niveau des classes filles.
+personne(id,nom_complet,role)
+user(login,password,#personne_id)
+professeur(grade,#personne_id)
+rp(#personne_id)
+ac(#personne_id)
+etudiant(matricule,adresse,sexe,#personne_id)
+
+One To Many -> ManyToOne
+1->* //One ToMany
+*->1 //ManyToOne
+MLD => cle du faible qui migre au niveau du fort
+AnneeScolaire(id,libelle)
+Inscription(#annee_id,ac_id,etudiant_id,classe_id,annee_id)
+
+ManyToMany -> ManyToOne =>
+classe(id,libelle,filiere,niveau)
+professeur_classe(#classe_id,#personne_id)
+demande(id,motif,etat,etudiant)
+
+//Type Requete
+//Requete Mis a jour => change l'etat de la table
+insert
+update
+delete
+select
+ 
+
+*********************************************************************
+
+annee_scolaire
+classe
+demande
+etudiant
+inscription
+module
+personne
+prof_classe
+prof_module
+
+
+
+classe professeur module demande inscription
+
+ajouter modifier supprimer(classe)
+ajouter modifier supprimer(professeur)
+ajouter annuler 
+ajouter annuler modifier suspendre
+ajouter 
+formulaire fonctionnalite de chaque UTILISATEUR
+
+
+/****************************exemple de formulaires**********************************
+<!-- formulaire de connexion -->
+<!-- <div class="card">
+    <div class="card-body">
+        <h4 class="card-title">Formulaire de connexion</h4>
+        <p class="card-text">
+        <form>
+            <div class="mb-1">
+                <label for="exampleInputEmail1" class="form-label">Email address</label>
+                <input type="email" placeholder="Email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+                <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
+            </div>
+            <div class="mb-3">
+                <label for="exampleInputPassword1" class="form-label">Password</label>
+                <input type="password" placeholder="Password" class="form-control" id="exampleInputPassword1">
+            </div>
+            <div class="mb-3 form-check">
+                <input type="checkbox" class="form-check-input" id="exampleCheck1">
+                <label class="form-check-label" for="exampleCheck1">Check me out</label>
+            </div>
+            <button type="submit" class="btn btn-primary">Submit</button>
+         </form>
+        </p>
+    </div>
+</div> -->
+<!-- <style>
+         *{
+            font-family:arial;
+         }
+         body{
+            margin:20px;
+         }
+         input{
+            border:solid 1px #2222AA;
+            margin-bottom:10px;
+            padding:16px;
+            outline:none;
+            border-radius:6px;
+         }
+         .erreur{
+            color:#CC0000;
+            margin-bottom:10px;
+         }
+      </style>
+   </head> -->
+   <!-- <body onLoad="document.fo.login.focus()"> -->
+   <!-- <div class="erreur">
+        <h1>Authentification</h1>
+            <form name="fo" method="post" action="http://localhost:8002/">
+                <input class="input" type="text" name="login" placeholder="Login" /><br />
+                <input class="input" type="password" name="password" placeholder="Mot de passe" /><br />
+                <input type="submit" name="valider" value="S'authentifier" />
+            </form>
+    </div> -->
+    
+    <!-- <form action="" method="POST" class="form-horizontal" role="form">
+            <div class="form-group">
+                <legend>S'identifier</legend>
+            </div>
+                
+                <div class="input-group">
+                    <div class="input-group-addon">Login</div>
+                    <input type="text" class="form-control" id="login" placeholder="Login">
+                </div>
+                
+                <div class="input-group">
+                    <div class="input-group-addon">Password</div><br>
+                    <input type="password" class="form-control" id="password" required="required" placeholder="Mot de passe">
+                </div>
+                
+            <div class="form-group">
+                <div class="col-sm-10 col-sm-offset-2">
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                </div>
+            </div>
+    </form> -->
+    <!-- /////////////////////////////////////////////////// -->
+   
+    <!-- <section class="vh-50" >
+        <div class="container py-5 h-100">
+            <div class="row d-flex justify-content-center align-items-center h-100">
+                <div class="col col-xl-10">
+            <div class="card" style="border-radius: 1rem;">
+            <div class="row g-0">
+            <div class="col-md-6 col-lg-5 d-none d-md-block">
+
+            </div>
+<div class="col-md-6 col-lg-7 d-flex align-items-center">
+<div class="card-body p-4 p-lg-5 text-black">
+<form action="<?=$Constantes::WEB_ROOT.'lister-professeur'?>" method="POST">
+    <div class="d-flex align-items-center mb-3 pb-1">
+        <i class="fas fa-cubes fa-2x me-3" style="color: #ff6219;"></i>
+        <span class="h1 fw-bold mb-0">S'identifier</span>
+    </div>
+        <h5 class="fw-normal mb-3 pb-3" style="letter-spacing: 1px;">Se connecter à votre compte</h5>
+    <div class="form-outline mb-4">
+        <input type="email" id="form2Example17" class="form-control form-control-lg" name="login"/>
+        <label class="form-label" for="form2Example17">Email address</label>
+    </div>
+    <div class="form-outline mb-4">
+        <input type="password" id="form2Example27" class="form-control form-control-lg" name="password"/>
+        <label class="form-label" for="form2Example27">Password</label>
+    </div>
+    <div class="pt-1 mb-4">
+        <button class="btn btn-dark btn-lg btn-block" type="submit">Login</button>
+    </div>
+        <a class="small text-muted" href="#!">Forgot password?</a> -->
